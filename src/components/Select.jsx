@@ -1,15 +1,15 @@
 import React from "react";
 
-const Select = () => {
+const Select = ({ resultType, setResultType, homeState, setHomeState }) => {
     return (
         <>
-            <label for='result'>Select budget/income:</label>
-            <select name='result' id='result'>
+            <label>Select budget/income:</label>
+            <select name='result' id='result' onChange={(e) => {setResultType(e.target.value)}}>
                 <option value='budget'>Budget</option>
                 <option value='income'>Income</option>
             </select>
-            <label for='select'>Select State:</label>
-            <select name='state' id='state'>
+            <label>Select State:</label>
+            <select name='state' id='state' onChange={(e) => {setHomeState(e.target.value)}}>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
