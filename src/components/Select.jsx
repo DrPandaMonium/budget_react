@@ -1,15 +1,16 @@
 import React from "react";
-
-const Select = () => {
+const Select = ({ setInput, setLocation }) => {
     return (
         <>
-            <label for='result'>Select budget/income:</label>
-            <select name='result' id='result'>
+            <label>Select budget/income:</label>
+            <select name='result' id='result' onChange={e => setInput(e.target.value)}>
+                <option disabled selected> -- Select an option -- </option>
                 <option value='budget'>Budget</option>
                 <option value='income'>Income</option>
             </select>
-            <label for='select'>Select State:</label>
-            <select name='state' id='state'>
+            <label>Select State:</label>
+            <select name='state' id='state' onChange={e => setLocation(e.target.value)}>
+            <option disabled selected> -- Select a State -- </option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>

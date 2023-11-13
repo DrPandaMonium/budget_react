@@ -4,9 +4,13 @@ import Select from './components/Select'
 
 function App() {
 
+  const [input, setInput] = useState('');
+  const [location, setLocation] = useState('');
+
+
   return (
     <>
-      <Select />
+      <Select setInput={setInput} setLocation={setLocation}/>
     </>
   )
 }
