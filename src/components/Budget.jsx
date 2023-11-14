@@ -11,7 +11,7 @@ const Budget = ({ location }) => {
     const stateTax = calculateTax(budgetInput, taxes[location]);
 
     // const result = budgetInput - ((budgetInput * federalTax) + fica + (budgetInput * stateTax));
-    const result = budgetInput - ((budgetInput * federalTax) + fica);
+    const result = budgetInput - (federalTax + fica + stateTax);
 
 
     return (

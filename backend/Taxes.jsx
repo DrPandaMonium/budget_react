@@ -5,11 +5,19 @@ there is also state taxes
 export function calculateTax(income, bracket) {
     for (let i = 0; i < bracket[0].length; i++) {
         if (income <= bracket[0][i]) {
-            return bracket[1][i];
+            if (bracket[2] != null) {
+                return ((bracket[1][i] * income) + bracket[2][i]);
+            } else {
+                return bracket[1][i] * income;
+            }
         }
     }
 
-    return bracket[1][bracket[0].length];
+    if (bracket[2] != null) {
+        return ((bracket[1][bracket[0].length] * income) + bracket[2][bracket[0].length]);
+    } else {
+        return bracket[1][bracket[0].length] * income;
+    }
 }
 
 // values used are from efile.com tax bracket rates and forms for single filers
