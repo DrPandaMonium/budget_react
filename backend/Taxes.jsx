@@ -12,7 +12,7 @@ export function calculateTax(income, bracket) {
     return bracket[1][bracket[0].length];
 }
 
-// values used are from efile.com tax bracket rates and forms
+// values used are from efile.com tax bracket rates and forms for single filers
 export const taxes = {
     federal: [[11000, 44725, 95375, 182100, 231250, 578125], [0.10, 0.12, 0.22, 0.24, 0.32, 0.35, 0.37]],
     AL: [[4000, 4500, 7000], [0, 0.02, 0.04, 0.05]],
