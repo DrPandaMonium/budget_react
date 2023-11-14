@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Select from './components/Select'
 import Budget from './components/Budget'
+import Income from './components/Income'
 
 function App() {
 
@@ -11,7 +12,10 @@ function App() {
   return (
     <>
       <Select setResult={setResult} setLocation={setLocation}/>
-      <Budget />
+      {result == 'budget' ? 
+        <Budget location={location} /> :
+        <Income location={location}/>
+      }
     </>
   )
 }
