@@ -1,6 +1,6 @@
 import React from "react";
 
-const Select = () => {
+const Select = ({ setInput, setLocation}) => {
     return (
         <>
             <label>Select budget/income:</label>

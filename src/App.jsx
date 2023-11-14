@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import './App.css'
 import Select from './components/Select'
-import IncomeStart from './components/IncomeStart'
-import BudgetStart from './components/BudgetStart'
 
 function App() {
 
@@ -12,7 +10,7 @@ function App() {
 
   return (
     <>
-      <Select />
+      <Select setInput={setInput} setLocation={setLocation}/>
     </>
   )
 }
