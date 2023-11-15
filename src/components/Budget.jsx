@@ -31,22 +31,22 @@ const Budget = ({ location }) => {
                 <h1>Needs: ${(needs / timePeriod[period]).toFixed(2)}</h1>
                 <div>
                     <h2>Rent: ${calculateResults(needs, 0.64, timePeriod[period])}</h2>
-                    <h2>Car payment and insurance: ${calculateResults(needs, 0.22, timePeriod[period])}</h2>
+                    <h2>Car Payment and Insurance: ${calculateResults(needs, 0.22, timePeriod[period])}</h2>
                     <h2>Groceries: ${calculateResults(needs, 0.14, timePeriod[period])}</h2>
                 </div>
             </div>
             <div>
                 <h1>Savings: ${(savings / timePeriod[period]).toFixed(2)}</h1>
                 <div>
-                    <h2>Student debt: ${calculateResults(savings, 0.44, timePeriod[period])}</h2>
-                    <h2>credit card payment: ${calculateResults(savings, 0.34, timePeriod[period])}</h2>
-                    <h2>savings: ${calculateResults(savings, 0.22, timePeriod[period])}</h2>
+                    <h2>Student Debt: ${calculateResults(savings, 0.44, timePeriod[period])}</h2>
+                    <h2>Credit Card Payment: ${calculateResults(savings, 0.34, timePeriod[period])}</h2>
+                    <h2>Savings: ${calculateResults(savings, 0.22, timePeriod[period])}</h2>
                 </div>
             </div>
             <div>
                 <h1>Wants: ${(wants / timePeriod[period]).toFixed(2)}</h1>
                 <div>
-                    <h2>Cellphone service: ${calculateResults(wants, 0.12, timePeriod[period])}</h2>
+                    <h2>Cellphone Service: ${calculateResults(wants, 0.12, timePeriod[period])}</h2>
                     <h2>Streaming Services: ${calculateResults(wants, 0.04, timePeriod[period])}</h2>
                     <h2>Internet: ${calculateResults(wants, 0.08, timePeriod[period])}</h2>
                     <h2>Dining: ${calculateResults(wants, 0.47, timePeriod[period])}</h2>
