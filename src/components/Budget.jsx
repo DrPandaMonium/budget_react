@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-import { calculateTax, taxes, calculateResults } from '../../backend/Taxes';
+import { calculateTax, taxes, calculateResults, timePeriod } from '../../backend/Taxes';
 
 const Budget = ({ location }) => {
 
     const [budgetInput, setBudgetInput] = useState('');
+    const [period, setPeriod] = useState('yearly');
 
     const federalTax = calculateTax(budgetInput, taxes.federal);
     const fica = budgetInput * 0.0765;
@@ -12,38 +13,44 @@ const Budget = ({ location }) => {
 
     const result = budgetInput - (federalTax + fica + stateTax);
 
-    const needs = (result * 0.5).toFixed(2);
-    const savings = (result * 0.2).toFixed(2);
-    const wants = (result * 0.3).toFixed(2);
+    const needs = (result * 0.5);
+    const savings = (result * 0.2);
+    const wants = (result * 0.3);
 
 
     return (
         <div>
             <input type='number' onChange={(e) => {setBudgetInput(e.target.value)}} value={budgetInput} placeholder='Enter Income'></input>
+            <select name='period' id='period' onChange={(e) => setPeriod(e.target.value)}>
+                <option value='yearly'>Yearly</option>
+                <option value='monthly'>Monthly</option>
+                <option value='weekly'>Weekly</option>
+                <option value='daily'>Daily</option>
+            </select>
             <div>
-                <h1>Needs: ${needs}</h1>
+                <h1>Needs: ${(needs / timePeriod[period]).toFixed(2)}</h1>
                 <div>
-                    <h2>Rent: ${calculateResults(needs, 0.64)}</h2>
-                    <h2>Car payment and insurance: ${calculateResults(needs, 0.22)}</h2>
-                    <h2>Groceries: ${calculateResults(needs, 0.14)}</h2>
+                    <h2>Rent: ${calculateResults(needs, 0.64, timePeriod[period])}</h2>
+                    <h2>Car payment and insurance: ${calculateResults(needs, 0.22, timePeriod[period])}</h2>
+                    <h2>Groceries: ${calculateResults(needs, 0.14, timePeriod[period])}</h2>
                 </div>
             </div>
             <div>
-                <h1>Savings: ${savings}</h1>
+                <h1>Savings: ${(savings / timePeriod[period]).toFixed(2)}</h1>
                 <div>
-                    <h2>Studen debt: ${calculateResults(savings, 0.44)}</h2>
-                    <h2>credit card payment: ${calculateResults(savings, 0.34)}</h2>
-                    <h2>savings: ${calculateResults(savings, 0.22)}</h2>
+                    <h2>Student debt: ${calculateResults(savings, 0.44, timePeriod[period])}</h2>
+                    <h2>credit card payment: ${calculateResults(savings, 0.34, timePeriod[period])}</h2>
+                    <h2>savings: ${calculateResults(savings, 0.22, timePeriod[period])}</h2>
                 </div>
             </div>
             <div>
-                <h1>Wants: ${wants}</h1>
+                <h1>Wants: ${(wants / timePeriod[period]).toFixed(2)}</h1>
                 <div>
-                    <h2>Cellphone service: ${calculateResults(wants, 0.12)}</h2>
-                    <h2>Streaming Services: ${calculateResults(wants, 0.04)}</h2>
-                    <h2>Internet: ${calculateResults(wants, 0.08)}</h2>
-                    <h2>Dining: ${calculateResults(wants, 0.47)}</h2>
-                    <h2>Shopping: ${calculateResults(wants, 0.29)}</h2>
+                    <h2>Cellphone service: ${calculateResults(wants, 0.12, timePeriod[period])}</h2>
+                    <h2>Streaming Services: ${calculateResults(wants, 0.04, timePeriod[period])}</h2>
+                    <h2>Internet: ${calculateResults(wants, 0.08, timePeriod[period])}</h2>
+                    <h2>Dining: ${calculateResults(wants, 0.47, timePeriod[period])}</h2>
+                    <h2>Shopping: ${calculateResults(wants, 0.29, timePeriod[period])}</h2>
                 </div>
             </div>
         </div>

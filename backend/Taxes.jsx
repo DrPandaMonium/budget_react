@@ -20,6 +20,17 @@ export function calculateTax(income, bracket) {
     }
 }
 
+export function calculateResults(money, percent, timeFrame) {
+    return ((money * percent) / timeFrame).toFixed(2);
+}
+
+export const timePeriod = {
+    yearly: 1,
+    monthly: 12,
+    weekly: 52,
+    daily: 365
+}
+
 // values used are from efile.com tax bracket rates and forms for single filers
 export const taxes = {
     federal: [[11000, 44725, 95375, 182100, 231250, 578125], [0.10, 0.12, 0.22, 0.24, 0.32, 0.35, 0.37]],
