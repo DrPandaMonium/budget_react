@@ -3,10 +3,11 @@ there is also state taxes
 */
 
 export function calculateTax(income, bracket) {
+
     for (let i = 0; i < bracket[0].length; i++) {
         if (income <= bracket[0][i]) {
             if (bracket[2] != null) {
-                return ((bracket[1][i] * income) + bracket[2][i]);
+                return ((bracket[1][i] * income) + (bracket[2][i]));
             } else {
                 return bracket[1][i] * income;
             }
@@ -14,14 +15,10 @@ export function calculateTax(income, bracket) {
     }
 
     if (bracket[2] != null) {
-        return ((bracket[1][bracket[0].length] * income) + bracket[2][bracket[0].length]);
+        return ((bracket[1][bracket[0].length] * income) + (bracket[2][bracket[0].length]));
     } else {
         return bracket[1][bracket[0].length] * income;
     }
-}
-
-export function calculateResults(money, percent, timeFrame) {
-    return ((money * percent) / timeFrame).toFixed(2);
 }
 
 export const timePeriod = {
