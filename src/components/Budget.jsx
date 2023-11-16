@@ -20,8 +20,9 @@ const Budget = ({ location }) => {
 
     return (
         <div>
+            <label>Enter Yearly Gross Income</label>
             <input type='number' onChange={(e) => {setBudgetInput(e.target.value)}} value={budgetInput} placeholder='Enter Income'></input>
-            <labe>Budget Timeframe:</labe>
+            <label>Budget Timeframe:</label>
             <select name='period' id='period' onChange={(e) => setPeriod(e.target.value)}>
                 <option value='yearly'>Yearly</option>
                 <option value='monthly'>Monthly</option>
