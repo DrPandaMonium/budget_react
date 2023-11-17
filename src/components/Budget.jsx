@@ -22,13 +22,19 @@ const Budget = ({ location }) => {
         <div>
             <label>Enter Yearly Gross Income</label>
             <input type='number' onChange={(e) => {setBudgetInput(e.target.value)}} value={budgetInput} placeholder='Enter Income'></input>
-            <label>Budget Timeframe:</label>
+            <label>Budget Type:</label>
             <select name='period' id='period' onChange={(e) => setPeriod(e.target.value)}>
                 <option value='yearly'>Yearly</option>
                 <option value='monthly'>Monthly</option>
                 <option value='weekly'>Weekly</option>
                 <option value='daily'>Daily</option>
             </select>
+            <div>
+                <h1>Taxes Paid: {(federalTax + fica + stateTax).toFixed(2)}</h1>
+                <h2>Federal: {federalTax.toFixed(2)}</h2>
+                <h2>FICA: {fica.toFixed(2)}</h2>
+                <h2>State: {stateTax.toFixed(2)}</h2>
+            </div>
             <div>
                 <h1>Needs: ${needs.toFixed(2)}</h1>
                 <div>
