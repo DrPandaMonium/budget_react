@@ -6,12 +6,15 @@ const Budget = ({ location }) => {
 
     const [budgetInput, setBudgetInput] = useState('');
     const [period, setPeriod] = useState('yearly');
+    const [budgetPeriod, setBudgetPeriod] = useState('yearly');
 
-    const federalTax = calculateTax(budgetInput, taxes.federal) / timePeriod[period];
-    const fica = budgetInput * 0.0765 / timePeriod[period];
-    const stateTax = calculateTax(budgetInput, taxes[location]) / timePeriod[period];
+    let yearlyIncome = budgetInput * timePeriod[budgetPeriod];
 
-    const result = (budgetInput / timePeriod[period]) - (federalTax + fica + stateTax).toFixed(2);
+    const federalTax = calculateTax(yearlyIncome, taxes.federal) / timePeriod[period];
+    const fica = yearlyIncome * 0.0765 / timePeriod[period];
+    const stateTax = calculateTax(yearlyIncome, taxes[location]) / timePeriod[period];
+
+    const result = (yearlyIncome / timePeriod[period]) - (federalTax + fica + stateTax).toFixed(2);
 
     const needs = (result * 0.5);
     const savings = (result * 0.2);
@@ -20,7 +23,15 @@ const Budget = ({ location }) => {
 
     return (
         <div>
-            <label>Enter Yearly Gross Income</label>
+            <label>Enter 
+                <select name='period' id='period' onChange={(e) => setBudgetPeriod(e.target.value)}>
+                    <option value='yearly'>Yearly</option>
+                    <option value='monthly'>Monthly</option>
+                    <option value='weekly'>Weekly</option>
+                    <option value='daily'>Daily</option>
+                </select> 
+                Gross Income
+            </label>
             <input type='number' onChange={(e) => {setBudgetInput(e.target.value)}} value={budgetInput} placeholder='Enter Income'></input>
             <label>Budget Type:</label>
             <select name='period' id='period' onChange={(e) => setPeriod(e.target.value)}>
