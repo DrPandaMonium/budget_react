@@ -23,23 +23,23 @@ const Budget = ({ location }) => {
 
     return (
         <div>
-            <label>Enter 
-                <select name='period' id='period' onChange={(e) => setBudgetPeriod(e.target.value)}>
+            <label>Calculate 
+                <select name='period' id='period' onChange={(e) => setPeriod(e.target.value)}>
                     <option value='yearly'>Yearly</option>
                     <option value='monthly'>Monthly</option>
                     <option value='weekly'>Weekly</option>
                     <option value='daily'>Daily</option>
                 </select> 
-                Gross Income
+                Budget from 
+                <select name='period' id='period' onChange={(e) => setBudgetPeriod(e.target.value)}>
+                    <option value='yearly'>Yearly</option>
+                    <option value='monthly'>Monthly</option>
+                    <option value='weekly'>Weekly</option>
+                    <option value='daily'>Daily</option>
+                </select>
+                Income:
             </label>
             <input type='number' onChange={(e) => {setBudgetInput(e.target.value)}} value={budgetInput} placeholder='Enter Income'></input>
-            <label>Budget Type:</label>
-            <select name='period' id='period' onChange={(e) => setPeriod(e.target.value)}>
-                <option value='yearly'>Yearly</option>
-                <option value='monthly'>Monthly</option>
-                <option value='weekly'>Weekly</option>
-                <option value='daily'>Daily</option>
-            </select>
             <div>
                 <h1>Taxes Paid: {(federalTax + fica + stateTax).toFixed(2)}</h1>
                 <h2>Federal: {federalTax.toFixed(2)}</h2>
