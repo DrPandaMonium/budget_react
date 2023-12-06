@@ -19,14 +19,18 @@ export function calculateTax(income, bracket) {
     } else {
         return bracket[1][bracket[0].length] * income;
     }
-}
+};
+
+export function sumValues(obj) {
+    return Object.values(obj).map((item) => parseInt(item)).filter((n) => isNaN(n) === false).reduce((a, b) => a + b)
+};
 
 export const timePeriod = {
     yearly: 1,
     monthly: 12,
     weekly: 52,
     daily: 365
-}
+};
 
 // values used are from efile.com tax bracket rates and forms for single filers
 export const taxes = {
