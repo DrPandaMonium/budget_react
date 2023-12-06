@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { sumValues } from '../../backend/Taxes';
+import { taxesPaid, taxes, sumValues, calculateIncome, timePeriod } from '../../backend/Taxes';
 
-const Income = () => {
+const Income = ({ location }) => {
     const [inputs, setInputs] = useState({
         rent: 0,
         car: 0,
@@ -19,8 +19,37 @@ const Income = () => {
         wOther: 0
     });
 
+    const [resultPeriod, setResultPeriod] = useState('yearly');
+    const [incomePeriod, setIncomePeriod] = useState('yearly');
+
+    const budgetTotal = sumValues(inputs) * timePeriod[incomePeriod];
+
+    // work on total income calculations
+
+    const federal = taxesPaid(budgetTotal, taxes.federal);
+    const state = taxesPaid(budgetTotal, taxes[location]);
+
+    const totalIncome = (calculateIncome(budgetTotal, federal, state) / timePeriod[resultPeriod]).toFixed(2);
+
     return (
         <div>
+            <label>Calculate 
+                <select name='period' id='period' onChange={(e) => setResultPeriod(e.target.value)}>
+                    <option value='yearly'>Yearly</option>
+                    <option value='monthly'>Monthly</option>
+                    <option value='weekly'>Weekly</option>
+                    <option value='daily'>Daily</option>
+                </select> 
+                Income from 
+                <select name='period' id='period' onChange={(e) => setIncomePeriod(e.target.value)}>
+                    <option value='yearly'>Yearly</option>
+                    <option value='monthly'>Monthly</option>
+                    <option value='weekly'>Weekly</option>
+                    <option value='daily'>Daily</option>
+                </select>
+                Budget
+            </label>
+            <h1>Income: ${totalIncome}</h1>
             <div>
                 <h1>Needs: 50%</h1>
                 <div>

@@ -22,7 +22,25 @@ export function calculateTax(income, bracket) {
 };
 
 export function sumValues(obj) {
-    return Object.values(obj).map((item) => parseInt(item)).filter((n) => isNaN(n) === false).reduce((a, b) => a + b)
+    return Object.values(obj).map((item) => parseFloat(item)).filter((n) => isNaN(n) === false).reduce((a, b) => a + b)
+};
+
+export function taxesPaid(budget, bracket) {
+    let total;
+
+    for (let i = 0; i < bracket[0].length; i++) {
+        total = (budget / (1 - bracket[1][i]));
+
+        if (total <= bracket[0][i]) {
+            return bracket[1][i];
+        }
+    }
+
+    return bracket[1][bracket[0].length];
+};
+
+export function calculateIncome(budget, fedTax, stateTax) {
+    return (budget / (1 - (fedTax + 0.0765 + stateTax))).toFixed(2);
 };
 
 export const timePeriod = {
