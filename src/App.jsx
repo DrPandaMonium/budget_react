@@ -10,13 +10,15 @@ function App() {
   const [location, setLocation] = useState('AL');
 
   return (
-    <>
-      <Select setResult={setResult} setLocation={setLocation}/>
-      {result == 'budget' ? 
-        <Budget location={location} /> :
-        <Income location={location}/>
-      }
-    </>
+    <div>
+      <div>
+        <Select setResult={setResult} setLocation={setLocation}/>
+        {result == 'budget' ? 
+          <Budget location={location} /> :
+          <Income location={location}/>
+        }
+      </div>
+    </div>
   )
 }
 
